@@ -1,5 +1,12 @@
-import Image from "next/image";
+import { fetchAllProducts } from "@/actions";
 
-export default function Home() {
-  return <div>Home</div>;
+export default async function Home() {
+  const getAllProducts = await fetchAllProducts();
+
+  console.log(getAllProducts);
+  return (
+    <div>
+      <h1>Shopping Cart</h1>
+    </div>
+  );
 }
