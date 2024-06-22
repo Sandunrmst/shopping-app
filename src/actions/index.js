@@ -4,6 +4,15 @@
 
 export async function fetchAllProducts() {
   try {
+    const result = await fetch("https://dummyjson.com/products", {
+      method: "GET",
+      cache: "no-store",
+    });
+    const data = await result.json();
+    return {
+      success: true,
+      data: data?.products,
+    };
   } catch (error) {
     console.log(e, "Getting products error!");
     return {
