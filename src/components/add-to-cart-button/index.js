@@ -1,11 +1,19 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "../ui/button";
+import { useSelector } from "react-redux";
 
-function AddToCartButton() {
+function AddToCartButton({ productItem }) {
+  //get cart in state
+  const { cart } = useSelector((state) => state);
+
   return (
     <div className="mt-8 max-w-md">
-      <Button>Add to Cart</Button>
+      <Button>
+        {cart?.cartItems.some((item) => item.id === productItem.id)
+          ? "Remove from cart"
+          : "Add to cart"}
+      </Button>
     </div>
   );
 }

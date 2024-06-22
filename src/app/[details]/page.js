@@ -1,5 +1,5 @@
 import { fetchProductDetails } from "@/actions";
-import AddToCartButton from "../components/products-card/add-to-cart-button";
+import AddToCartButton from "@/components/add-to-cart-button";
 
 async function ProductDetails({ params }) {
   const getProductDetails = await fetchProductDetails(params.details);
@@ -36,7 +36,7 @@ async function ProductDetails({ params }) {
             <h3 className="text-sm font-bold text-gray-700">
               {getProductDetails?.description}
             </h3>
-            <AddToCartButton />
+            <AddToCartButton productItem={getProductDetails} />
           </div>
         </div>
       </div>
