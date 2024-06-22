@@ -1,5 +1,7 @@
 "use server";
 
+import { signIn, signOut } from "@/auth";
+
 //get all products
 
 export async function fetchAllProducts() {
@@ -43,4 +45,13 @@ export async function fetchProductDetails(currentProductID) {
       message: "Some error occured! Please try again",
     };
   }
+}
+
+//handle login
+export async function loginAction() {
+  await signIn("github");
+}
+
+export async function logoutAction() {
+  await signOut();
 }
