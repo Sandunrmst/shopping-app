@@ -1,12 +1,23 @@
 "use client";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../ui/button";
-import { useState } from "react/cjs/react.production.min";
+import { useEffect, useState } from "react";
+import { removeFromCart } from "@/store/slices/cart-slice";
 
 function Cart() {
   const [totalAmount, setTotalAmount] = useState(0);
   const { cart } = useSelector((state) => state);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setTotalAmount(cart?.cartItems.reduce((acc, curr) => acc + curr?.price, 0));
+  }, [cart?.cartItems]);
+
+  function handleRemoveFromCart(getCurrentItemID) {
+    dispatch(removeFromCart(getCurrentItemID));
+  }
 
   if (!cart?.cartItems.length)
     return <h1 className="text-4xl font-bold p-10">Cart is empty.</h1>;
@@ -46,12 +57,21 @@ function Cart() {
                     <p className="font-semibold">$ {item?.price}</p>
                   </td>
                   <td className="py-5 px-4">
-                    <Button>Remove</Button>
+                    <Button onClick={() => handleRemoveFromCart(item?.id)}>
+                      Remove
+                    </Button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+        </div>
+        <div className="max-w-xl ml-auto mt-6">
+          <div>
+            <p className="text-lg font-bold">
+              Total <span>$ {totalAmount.toFixed(2)}</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
