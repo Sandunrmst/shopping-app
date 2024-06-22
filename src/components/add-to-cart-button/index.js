@@ -1,6 +1,6 @@
 "use client";
 
-import { removeFromCart } from "@/store/slices/cart-slice";
+import { addToCart, removeFromCart } from "@/store/slices/cart-slice";
 import { Button } from "../ui/button";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -22,11 +22,11 @@ function AddToCartButton({ productItem }) {
     <div className="mt-8 max-w-md">
       <Button
         type="button"
-        onClick={cart?.cartItems.some(
-          ((item) => item.id === productItem.id)
+        onClick={
+          cart?.cartItems.some((item) => item.id === productItem.id)
             ? handleRemoveFromCart
             : handleAddToCart
-        )}
+        }
       >
         {cart?.cartItems.some((item) => item.id === productItem.id)
           ? "Remove from cart"
