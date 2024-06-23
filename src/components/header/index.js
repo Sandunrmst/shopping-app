@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { loginAction } from "@/actions";
 
-function Headers() {
+function Headers({ getSession }) {
   async function handleOauthSignIn() {
     await loginAction();
   }
