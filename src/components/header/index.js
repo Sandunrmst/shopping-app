@@ -2,9 +2,13 @@
 
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { loginAction } from "@/actions";
+import { loginAction, logoutAction } from "@/actions";
 
 function Headers({ getSession }) {
+  async function handleOuthSignOut() {
+    await logoutAction();
+  }
+
   async function handleOauthSignIn() {
     await loginAction();
   }
@@ -26,8 +30,8 @@ function Headers({ getSession }) {
       </ul>
 
       <div className="flex space-x-3">
-        <form action={handleOauthSignIn}>
-          <Button type="submit">Login</Button>
+        <form action={getSession?.user ? handleOuthSignOut : handleOauthSignIn}>
+          <Button type="submit">{getSession?.user ? "Logout" : "Login"}</Button>
         </form>
       </div>
     </header>
