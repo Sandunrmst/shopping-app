@@ -9,7 +9,7 @@ function Headers() {
     await loginAction();
   }
   return (
-    <header className="flex shadow-md py-4 px-4 bg-white min-h-[70px] tracking-wide relative z-50">
+    <header className="flex shadow-md py-4 px-4 bg-white min-h-[70px] tracking-wide  z-50 sticky top-0">
       <div className="flex flex-wrap items-center justify-between gap-6 w-full">
         <Link href={"/"} className="font-semibold text-2xl">
           Shopping Store
