@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import { useEffect, useState } from "react";
 import { removeFromCart } from "@/store/slices/cart-slice";
 
-async function Cart() {
+function Cart() {
   const [totalAmount, setTotalAmount] = useState(0);
   const { cart } = useSelector((state) => state);
 
